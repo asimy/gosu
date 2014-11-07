@@ -65,9 +65,8 @@ def for_each_gosu_method
 end
 
 def next_uuid
-  gen = lambda { |n| (0...n).map { rand(16).to_s(16).upcase } }
-  # Very weak pseudo UUID v4, see https://en.wikipedia.org/wiki/Uuid
-  (gen[8] + %w(-) + gen[4] + %w(-4) + gen[3] + %w(a-) + gen[3] + %w(-) + gen[12]).join
+  require 'securerandom'
+  SecureRandom.uuid
 end
 
 BUNDLE_ROOT = "pkg/RubyGosu.tmbundle"
